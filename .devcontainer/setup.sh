@@ -2,6 +2,9 @@
 # Runs once when the codespace is created. Installs PostgreSQL from the
 # official PostgreSQL apt repository, exactly as postgresql.org/download instructs.
 set -e
+# Make sure the lab user can use sudo without a password in the terminal
+echo "vscode ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/vscode-nopasswd > /dev/null
+sudo chmod 0440 /etc/sudoers.d/vscode-nopasswd
 sudo apt-get update
 sudo apt-get install -y curl ca-certificates nano
 sudo install -d /usr/share/postgresql-common/pgdg
